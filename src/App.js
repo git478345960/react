@@ -46,7 +46,14 @@ class App extends Component {
     this.setState({showPersons: !doesShow})
   }
   render() {
-
+    const style = {
+      backgroundColor: 'green',
+      color: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    }
     let persons = null;
     if(this.state.showPersons){
       persons = (
@@ -56,69 +63,36 @@ class App extends Component {
             return <Person 
             name = {person.name} 
             count = {person.count} 
-            key = {index} />
+            key = {index}
+             />
+            
           })
         }
-
-
-        {/* <Person 
-        changeName = {this.changeName}
-        name ={this.state.persons[0].name} 
-        count = {this.state.persons[0].count}/>
-        <Person 
-        myclick = {this.change.bind(this,"米修mussu")} 
-        name ={this.state.persons[1].name} 
-        count = {this.state.persons[1].count}/>
-        <Person 
-        name ={this.state.persons[2].name} 
-        count = {this.state.persons[2].count}/> */}
-          </div>
+        </div>
       )
+        style.backgroundColor = "red";
+    }
+    // const classes = ["red","bold"].join(" ");
+    const classes = [];
+    if(this.state.persons.length >2){
+      classes.push("red");
+    }
+    if(this.state.persons.length < 2){
+      classes.push("bold");
     }
     return (
       
       <div>
           <div>手动阀手动阀</div>
-          <button onClick = {this.switchNameHandler}>show/hide</button>
+          <p className = {classes.join(' ')}>hi!!!,nihao</p>
+          <button onClick = {this.switchNameHandler} style = {style} >show/hide</button>
           {persons}
+
           <Child name = {this.sayHello.bind(this,this.state.persons[0].name)}/>
-          
-          {/* {
-
-            this.state.showPersons  === true ?
-            <div>
-          <Person 
-          changeName = {this.changeName}
-          name ={this.state.persons[0].name} 
-          count = {this.state.persons[0].count}/>
-          <Person 
-          myclick = {this.change.bind(this,"米修mussu")} 
-          name ={this.state.persons[1].name} 
-          count = {this.state.persons[1].count}/>
-          <Person 
-          name ={this.state.persons[2].name} 
-          count = {this.state.persons[2].count}/>
-            </div>
-            : null
-          } */}
-          
-          {/* <Person 
-          changeName = {this.changeName}
-          name ={this.state.persons[0].name} 
-          count = {this.state.persons[0].count}/>
-          <Person 
-          myclick = {this.change.bind(this,"米修mussu")} 
-          name ={this.state.persons[1].name} 
-          count = {this.state.persons[1].count}/>
-          <Person 
-          name ={this.state.persons[2].name} 
-          count = {this.state.persons[2].count}/>
-          </div> */}
-          {/* <button onClick = {this.change.bind(this,'mussu')}>click me</button> */}
-
       </div>
       
     );
+
   }
 }
 
