@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './person/Person'
+import Child from './person/newChild';
 
 class App extends Component {
   state = {
@@ -36,6 +37,10 @@ class App extends Component {
       ]
     })
   }
+  sayHello = (name) => {
+
+    console.log(name)
+  }
   switchNameHandler = () =>{
     const doesShow = this.state.showPersons;
     this.setState({showPersons: !doesShow})
@@ -48,7 +53,10 @@ class App extends Component {
         <div>
         {
           this.state.persons.map((person,index) => {
-            return <Person name = {person.name} count = {person.count} key = {index} />
+            return <Person 
+            name = {person.name} 
+            count = {person.count} 
+            key = {index} />
           })
         }
 
@@ -73,6 +81,8 @@ class App extends Component {
           <div>手动阀手动阀</div>
           <button onClick = {this.switchNameHandler}>show/hide</button>
           {persons}
+          <Child name = {this.sayHello.bind(this,this.state.persons[0].name)}/>
+          
           {/* {
 
             this.state.showPersons  === true ?
